@@ -38,7 +38,7 @@
       "error",
       {
         "tabWidth": 2,
-        "printWidth": 160,
+        "printWidth": 100,
         "singleQuote": true,
         "jsxBracketSameLine": true,
         "trailingComma": "es5"

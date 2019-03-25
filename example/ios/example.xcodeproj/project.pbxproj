@@ -1291,7 +1291,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"\"$(SRCROOT)/../../../../Documents/IronSourceSDK\"",
+					"\"$(SRCROOT)/../../../../IronSourceSDK\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1322,7 +1322,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"\"$(SRCROOT)/../../../../Documents/IronSourceSDK\"",
+					"\"$(SRCROOT)/../../../../IronSourceSDK\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

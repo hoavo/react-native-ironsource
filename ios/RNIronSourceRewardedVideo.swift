@@ -21,6 +21,7 @@ let kRewardedVideoDidOpen = "rewardedVideoDidOpen";
 class RNIronSourceRewardedVideo: RCTEventEmitter {
   
   @objc public func initializeRewardedVideo() {
+    print("RNIronSourceRewardedVideo::showRewardedVideo:: available")
     IronSource.setRewardedVideoDelegate(self)
    
   }

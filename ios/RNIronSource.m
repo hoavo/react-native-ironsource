@@ -14,7 +14,6 @@
   return YES;
 }
 
-RCT_EXTERN_METHOD(printMessage:(NSString *)message)
 RCT_EXTERN_METHOD(initWithAppKey:(NSString *)appKey userId: (NSString *)userId)
 
 @end

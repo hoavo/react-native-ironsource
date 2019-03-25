@@ -19,6 +19,7 @@ let kInterstitialDidLoad = "interstitialDidLoad";
 @objc(RNIronSourceInterstitials)
 class RNIronSourceInterstitials: RCTEventEmitter {
   @objc public func initializeInterstitial() {
+    print("RNIronSourceInterstitials::initializeInterstitial:: initializeInterstitial")
     IronSource.setInterstitialDelegate(self)
     IronSource.loadInterstitial()
   }

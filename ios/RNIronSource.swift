@@ -11,12 +11,8 @@ import Foundation
 @objc(RNIronSource)
 class RNIronSource: NSObject {
   
-  @objc func printMessage(message: String!) {
-    print("RNIronSource::printMessage => \(String(describing: message))")
-  }
-  
   @objc func initWithAppKey(_ appKey: String, userId: String) {
-    printMessage(message: "Init: \(appKey) - \(userId)")
+    print("RNIronSource::initWithAppKey:: initWithAppKey", appKey,userId)
     IronSource.initWithAppKey(appKey)
     IronSource.setUserId(userId)
     ISIntegrationHelper.validateIntegration()

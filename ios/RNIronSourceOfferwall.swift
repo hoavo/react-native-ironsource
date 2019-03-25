@@ -19,6 +19,7 @@ let kOfferwallHasChangedAvailability = "offerwallHasChangedAvailability";
 class RNIronSourceOfferwall: RCTEventEmitter {
   
   @objc public func initializeOfferwall() {
+    print("RNIronSourceOfferwall::initializeOfferwall:: initializeOfferwall")
     IronSource.setOfferwallDelegate(self)
     
   }

@@ -9,7 +9,7 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { RNIronSource, RNIronSourceRewardedVideo, RNIronSourceInterstitials, RNIronSourceOfferwall } from 'react-native-iron-source';
+import { RNIronSource, RNIronSourceRewardedVideo, RNIronSourceInterstitials, RNIronSourceOfferwall, RNIronSourceBanner } from 'react-native-iron-source';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -22,6 +22,7 @@ export default class App extends Component<Props> {
     RNIronSourceRewardedVideo.initializeRewardedVideo();
     RNIronSourceInterstitials.initializeInterstitial();
     RNIronSourceOfferwall.initializeOfferwall();
+    RNIronSourceBanner.initializeBanner();
 
     RNIronSourceRewardedVideo.addEventListener('rewardedVideoDidFailToShowWithError', this.rewardedVideoDidFailToShowWithError);
     RNIronSourceRewardedVideo.addEventListener('rewardedVideoHasChangedAvailability', this.rewardedVideoHasChangedAvailability);
@@ -46,11 +47,42 @@ export default class App extends Component<Props> {
     RNIronSourceOfferwall.addEventListener('offerwallDidFailToShowWithError', this.offerwallDidFailToShowWithError);
     RNIronSourceOfferwall.addEventListener('offerwallDidShow', this.offerwallDidShow);
     RNIronSourceOfferwall.addEventListener('offerwallHasChangedAvailability', this.offerwallHasChangedAvailability);
+
+    RNIronSourceBanner.addEventListener('bannerDidDismissScreen', this.bannerDidDismissScreen);
+    RNIronSourceBanner.addEventListener('bannerDidFailToLoadWithError', this.bannerDidFailToLoadWithError);
+    RNIronSourceBanner.addEventListener('bannerDidLoad', this.bannerDidLoad);
+    RNIronSourceBanner.addEventListener('bannerWillLeaveApplication', this.bannerWillLeaveApplication);
+    RNIronSourceBanner.addEventListener('bannerWillPresentScreen', this.bannerWillPresentScreen);
+    RNIronSourceBanner.addEventListener('didClickBanner', this.didClickBanner);
   }
 
   componentWillMount() {
     RNIronSource.initWithAppKey('8c7421e5', '1');
   }
+
+  bannerDidDismissScreen = () => {
+    console.log('bannerDidDismissScreen');
+  };
+
+  bannerDidFailToLoadWithError = error => {
+    console.log('bannerDidFailToLoadWithError', error);
+  };
+
+  bannerDidLoad = () => {
+    console.log('bannerDidLoad');
+  };
+
+  bannerWillLeaveApplication = () => {
+    console.log('bannerWillLeaveApplication');
+  };
+
+  bannerWillPresentScreen = () => {
+    console.log('bannerWillPresentScreen');
+  };
+
+  didClickBanner = () => {
+    console.log('didClickBanner');
+  };
 
   didFailToReceiveOfferwallCreditsWithError = () => {
     console.log('didFailToReceiveOfferwallCreditsWithError');
@@ -152,6 +184,13 @@ export default class App extends Component<Props> {
     RNIronSourceOfferwall.showOfferwall();
   }
 
+  showBanner() {
+    RNIronSourceBanner.showBanner('Startup', 'BANNER');
+  }
+
+  hideBanner() {
+    RNIronSourceBanner.hideBanner();
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -166,6 +205,12 @@ export default class App extends Component<Props> {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.showOfferwall()}>
           <Text style={styles.instructions}>Show Offerwall</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.showBanner()}>
+          <Text style={styles.instructions}>Show Banner</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.hideBanner()}>
+          <Text style={styles.instructions}>Hide Banner</Text>
         </TouchableOpacity>
       </View>
     );
