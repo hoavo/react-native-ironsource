@@ -1,20 +1,32 @@
+// @flow
 import { NativeModules, NativeEventEmitter } from 'react-native';
 
-const RNIronSourceRewardedVideo = NativeModules.RNIronSourceRewardedVideo;
+type EventTypes =
+  | 'rewardedVideoDidFailToShowWithError'
+  | 'rewardedVideoHasChangedAvailability'
+  | 'didReceiveReward'
+  | 'didClickRewardedVideo'
+  | 'rewardedVideoDidEnd'
+  | 'rewardedVideoDidStart'
+  | 'rewardedVideoDidClose'
+  | 'rewardedVideoDidOpen';
+
+const { RNIronSourceRewardedVideo } = NativeModules;
+
 const IronSourceRewardedVideoEventEmitter = new NativeEventEmitter(RNIronSourceRewardedVideo);
 
 const eventHandlers = {
-    rewardedVideoDidFailToShowWithError: new Map(),
-    rewardedVideoHasChangedAvailability: new Map(),
-    didReceiveReward: new Map(),
-    didClickRewardedVideo: new Map(),
-    rewardedVideoDidEnd: new Map(),
-    rewardedVideoDidStart: new Map(),
-    rewardedVideoDidClose: new Map(),
-    rewardedVideoDidOpen: new Map(),
+  rewardedVideoDidFailToShowWithError: new Map(),
+  rewardedVideoHasChangedAvailability: new Map(),
+  didReceiveReward: new Map(),
+  didClickRewardedVideo: new Map(),
+  rewardedVideoDidEnd: new Map(),
+  rewardedVideoDidStart: new Map(),
+  rewardedVideoDidClose: new Map(),
+  rewardedVideoDidOpen: new Map(),
 };
 
-const addEventListener = (type, handler) => {
+const addEventListener = (type: EventTypes, handler) => {
   switch (type) {
     case 'rewardedVideoDidFailToShowWithError':
     case 'rewardedVideoHasChangedAvailability':
@@ -31,7 +43,7 @@ const addEventListener = (type, handler) => {
   }
 };
 
-const removeEventListener = (type, handler) => {
+const removeEventListener = (type: EventTypes, handler) => {
   if (!eventHandlers[type].has(handler)) {
     return;
   }
@@ -49,11 +61,18 @@ const removeAllListeners = () => {
   IronSourceRewardedVideoEventEmitter.removeAllListeners('rewardedVideoDidOpen');
 };
 
+const initializeRewardedVideo = () => {
+  RNIronSourceRewardedVideo.initializeRewardedVideo();
+};
+
+const showRewardedVideo = () => {
+  RNIronSourceRewardedVideo.showRewardedVideo();
+};
+
 export default {
-//   ...RNIronSourceRewardedVideo,
-  initializeRewardedVideo: () => RNIronSourceRewardedVideo.initializeRewardedVideo(),
-  showRewardedVideo: () => RNIronSourceRewardedVideo.showRewardedVideo(),
+  initializeRewardedVideo,
+  showRewardedVideo,
   addEventListener,
   removeEventListener,
-  removeAllListeners
+  removeAllListeners,
 };

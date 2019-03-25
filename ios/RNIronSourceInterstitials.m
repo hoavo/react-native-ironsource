@@ -15,7 +15,7 @@
 }
 
 RCT_EXTERN_METHOD(initializeInterstitial)
-RCT_EXTERN_METHOD(showInterstitial)
+RCT_EXTERN_METHOD(showInterstitial:(NSString*) placementName)
 
 @end
 

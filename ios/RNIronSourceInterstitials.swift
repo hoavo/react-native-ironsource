@@ -23,11 +23,11 @@ class RNIronSourceInterstitials: RCTEventEmitter {
     IronSource.loadInterstitial()
   }
   
-  @objc public func showInterstitial() {
+    @objc public func showInterstitial(_ placementName: String) {
     if IronSource.hasInterstitial() {
       print("RNIronSourceInterstitials::showInterstitial:: available")
       if let viewController = UIApplication.shared.keyWindow!.rootViewController {
-        IronSource.showInterstitial(with: viewController)
+        IronSource.showInterstitial(with: viewController, placement: placementName)
       } else {
         print("RNIronSourceInterstitials::showInterstitial:: rootViewController not available")
       }

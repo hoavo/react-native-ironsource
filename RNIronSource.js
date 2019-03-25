@@ -1,30 +1,10 @@
+// @flow
 import { NativeModules } from 'react-native';
 
-const RNIronSource = NativeModules.RNIronSource;
+const { RNIronSource } = NativeModules;
 
-const addEventListener = (type, handler) => {
-  switch (type) {
-    default:
-      console.log(`Event with type ${type} does not exist.`);
-  }
-}
-
-const removeEventListener = (type, handler) => {
-  if (!eventHandlers[type].has(handler)) {
-    return;
-  }
-  eventHandlers[type].get(handler).remove();
-  eventHandlers[type].delete(handler);
-}
-
-const removeAllListeners = () => {
-
-};
+const initWithAppKey = (appKey: string, userId: string) => RNIronSource.initWithAppKey(appKey, userId);
 
 export default {
-    ...RNIronSource,
-  initWithAppKey: (appKey, adUnits) => RNIronSource.initWithAppKey(appKey, adUnits),
-  addEventListener,
-  removeEventListener,
-  removeAllListeners
+  initWithAppKey,
 };
