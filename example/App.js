@@ -24,6 +24,7 @@ export default class App extends Component<Props> {
     RNIronSourceOfferwall.initializeOfferwall();
     RNIronSourceBanner.initializeBanner();
 
+    // @flow strict
     RNIronSourceRewardedVideo.addEventListener('rewardedVideoDidFailToShowWithError', this.rewardedVideoDidFailToShowWithError);
     RNIronSourceRewardedVideo.addEventListener('rewardedVideoHasChangedAvailability', this.rewardedVideoHasChangedAvailability);
     RNIronSourceRewardedVideo.addEventListener('didReceiveReward', this.didReceiveReward);
@@ -57,7 +58,7 @@ export default class App extends Component<Props> {
   }
 
   componentWillMount() {
-    RNIronSource.initWithAppKey('8c7421e5', '1');
+    RNIronSource.initWithAppKey(Platform.OS === 'ios' ? '8c7421e5' : '8d2bf675', '1');
   }
 
   bannerDidDismissScreen = () => {
@@ -212,6 +213,7 @@ export default class App extends Component<Props> {
         <TouchableOpacity onPress={() => this.hideBanner()}>
           <Text style={styles.instructions}>Hide Banner</Text>
         </TouchableOpacity>
+        {/* <RNIronSourceBanner.BannerView /> */}
       </View>
     );
   }
